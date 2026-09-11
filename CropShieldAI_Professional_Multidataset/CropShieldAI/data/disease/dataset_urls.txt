@@ -1,0 +1,5 @@
+PlantVillage (TFDS): https://www.tensorflow.org/datasets/catalog/plant_village
+Paddy Doctor paper/dataset: https://arxiv.org/abs/2205.11108
+Rice Leaf Disease 30k+ dataset card: https://www.kaggle.com/datasets/alamshihab075/rice-leaf-disease-an-images-dataset
+Rice Leaf Diseases 120 image dataset: https://www.kaggle.com/datasets/vbookshelf/rice-leaf-diseases
+Rice Leaf Disease 8-class dataset: https://www.kaggle.com/datasets/raihan150146/rice-leaf-diseases-dataset

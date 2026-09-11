@@ -1,0 +1,10 @@
+{
+  "primary": [
+    {"name":"PlantVillage","images":54303,"classes":38,"role":"primary multi-crop training","source":"https://www.tensorflow.org/datasets/catalog/plant_village"},
+    {"name":"Paddy Doctor","images":16225,"classes":13,"role":"paddy external benchmark/validation","source":"https://arxiv.org/abs/2205.11108"},
+    {"name":"Rice Leaf Disease multi-source","images":"30000+","classes":"17 diseases + healthy/pest","role":"rice field/lab external validation","license":"MIT","source":"https://www.kaggle.com/datasets/alamshihab075/rice-leaf-disease-an-images-dataset"}
+  ],
+  "small_validation": [
+    {"name":"Rice Leaf Diseases","images":120,"classes":3,"role":"small external validation","source":"https://www.kaggle.com/datasets/vbookshelf/rice-leaf-diseases"}
+  ]
+}

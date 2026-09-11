@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CropShield AI | Smart Agriculture</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">🌱</div>
+        <div><strong>CropShield AI</strong><span>Smart Agriculture</span></div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-page="dashboard">⌂ <span data-i18n="dashboard">Dashboard</span></button>
+        <button class="nav-item" data-page="crop-scan">📷 <span data-i18n="cropScan">Crop Scan</span></button>
+        <button class="nav-item" data-page="thermal">🌡️ <span data-i18n="thermal">Thermal Analysis</span></button>
+        <button class="nav-item" data-page="irrigation">💧 <span data-i18n="irrigation">Smart Irrigation</span></button>
+        <button class="nav-item" data-page="history">🗂️ <span data-i18n="history">Analysis History</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="ai-badge">● <span data-i18n="aiLive">AI services online</span></div>
+        <div class="demo-note">Prototype / Demo Mode</div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button id="menuBtn" class="icon-btn">☰</button>
+        <div>
+          <div class="eyebrow">AI + IoT AGRICULTURE PLATFORM</div>
+          <h1 id="pageTitle">Farm Intelligence Dashboard</h1>
+        </div>
+        <div class="top-actions">
+          <select id="languageSelect" aria-label="Language">
+            <option value="en">English</option><option value="te">తెలుగు</option><option value="hi">हिन्दी</option>
+            <option value="ta">தமிழ்</option><option value="kn">ಕನ್ನಡ</option><option value="ml">മലയാളം</option>
+          </select>
+          <button id="micBtn" class="mic-btn" title="Speak">🎙️</button>
+          <div class="user-chip">👨‍🌾 <span>Farmer</span></div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="page" id="dashboard">
+          <div class="hero-card">
+            <div><span class="pill">● LIVE FARM MONITORING</span><h2 data-i18n="welcome">One platform for crop health, water intelligence and automation.</h2><p data-i18n="heroText">Use mobile crop scanning, thermal insights and IoT sensors to predict water needs and control irrigation intelligently.</p></div>
+            <div class="hero-icon">🌾</div>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><span>Soil Moisture</span><strong id="soilMoisture">--%</strong><small class="positive">● Live sensor</small></div>
+            <div class="metric"><span>Predicted Moisture</span><strong id="predMoisture">--%</strong><small>Next 6 hours</small></div>
+            <div class="metric"><span>Canal Water</span><strong id="canalLevel">--%</strong><small class="positive">● Available</small></div>
+            <div class="metric"><span>Gate Status</span><strong id="gateStatus">--</strong><small id="gateNote">Automation ready</small></div>
+          </div>
+
+          <div class="two-col">
+            <div class="card">
+              <div class="card-head"><div><h3 data-i18n="sensorTitle">IoT Sensor Intelligence</h3><p data-i18n="sensorSub">Live field conditions from connected devices</p></div><button class="soft-btn" id="refreshBtn">↻ Refresh</button></div>
+              <div class="sensor-list">
+                <div><span>🌡️ Temperature</span><strong id="temperature">-- °C</strong></div>
+                <div><span>💨 Humidity</span><strong id="humidity">-- %</strong></div>
+                <div><span>🌊 Flow Rate</span><strong id="flowRate">-- L/s</strong></div>
+                <div><span>🧠 Water Need</span><strong id="waterNeed">--</strong></div>
+              </div>
+              <div class="progress-block"><span>Moisture trend</span><div class="progress"><i id="moistureBar"></i></div></div>
+              <div class="chart" id="miniChart"></div>
+            </div>
+            <div class="card quick-card">
+              <div class="card-head"><div><h3 data-i18n="quickTitle">Quick Actions</h3><p>Demonstrate the core workflow</p></div></div>
+              <button class="action-btn" data-go="crop-scan"><span>📷</span><div><b>Scan Crop</b><small>Mobile image → AI health analysis</small></div><em>→</em></button>
+              <button class="action-btn" data-go="thermal"><span>🌡️</span><div><b>Thermal Check</b><small>Temperature zones → stress insight</small></div><em>→</em></button>
+              <button class="action-btn" data-go="irrigation"><span>💧</span><div><b>Smart Irrigation</b><small>Prediction → automated gate</small></div><em>→</em></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="page hidden" id="crop-scan">
+          <div class="section-intro"><div><span class="pill">MOBILE AI</span><h2 data-i18n="cropTitle">Crop Health Scanner</h2><p>Upload a crop image from a phone or camera for prototype AI inference.</p></div></div>
+          <div class="scan-layout">
+            <div class="card upload-card">
+              <input type="file" id="cropFile" accept="image/*" hidden />
+              <div class="dropzone" id="dropzone"><div class="drop-icon">📷</div><h3 data-i18n="uploadTitle">Upload crop image</h3><p>PNG, JPG, JPEG or WEBP · up to 25 MB</p><button class="primary-btn" id="chooseBtn">Choose Image</button><small>Tip: a clear leaf photo gives better prototype analysis.</small></div>
+              <img id="cropPreview" class="preview hidden" alt="Crop preview" />
+              <button class="primary-btn full hidden" id="analyzeBtn">Run AI Analysis</button>
+            </div>
+            <div class="card result-card"><div class="card-head"><div><h3>AI Analysis Result</h3><p id="analysisTime">Waiting for an image</p></div><span class="status-dot">● Prototype AI</span></div>
+              <div class="score-ring" id="scoreRing"><div><strong id="healthScore">--</strong><span>Health score</span></div></div>
+              <div class="result-row"><span>Condition</span><b id="condition">—</b></div><div class="result-row"><span>Severity</span><b id="severity">—</b></div><div class="result-row"><span>Confidence</span><b id="confidence">—</b></div><div class="result-row"><span>Inference source</span><b id="modelStatus">—</b></div>
+              <div class="recommend"><strong>Recommended action</strong><p id="recommendation">Upload a crop image to receive an analysis.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page hidden" id="thermal">
+          <div class="section-intro"><div><span class="pill">MULTIMODAL AI</span><h2>Thermal Stress Analysis</h2><p>Use a thermal image to add heat-based evidence to the crop-health decision.</p></div><button class="primary-btn" id="thermalBtn">Run Thermal Check</button></div>
+          <div class="thermal-layout">
+            <div class="card thermal-visual"><div class="thermal-map"><span class="hot h1">35.2°</span><span class="hot h2">34.8°</span><span class="warm w1">33.7°</span><span class="warm w2">33.0°</span><span class="cool c1">31.2°</span><span class="cool c2">31.8°</span><div class="leaf-shape">🌿</div></div><div class="legend"><span>Cool</span><i></i><span>Warm</span><i></i><span>Hot</span></div></div>
+            <div class="card"><h3>Thermal Decision Support</h3><div class="big-stat"><span>Average Temp</span><strong id="avgTemp">-- °C</strong></div><div class="big-stat"><span>Maximum Temp</span><strong id="maxTemp">-- °C</strong></div><div class="result-row"><span>Stress Status</span><b id="thermalStress">Not analysed</b></div><div class="result-row"><span>Risk</span><b id="thermalRisk">—</b></div><div class="recommend"><strong>Action</strong><p id="thermalRecommendation">Run thermal check to generate a recommendation.</p></div></div>
+          </div>
+        </div>
+
+        <div class="page hidden" id="irrigation">
+          <div class="section-intro"><div><span class="pill">IOT + AI</span><h2>Smart Irrigation Control</h2><p>Predict moisture, determine water need and control the irrigation gate.</p></div></div>
+          <div class="irrigation-grid">
+            <div class="card prediction-card"><h3>AI Water Prediction</h3><div class="prediction-value"><strong id="waterNeedLarge">--</strong><span>water requirement</span></div><div class="prediction-bars"><div><span>Current moisture</span><b id="currentBarLabel">--%</b></div><div class="progress"><i id="currentBar"></i></div><div><span>Predicted moisture</span><b id="predBarLabel">--%</b></div><div class="progress"><i id="predBar"></i></div></div><p class="muted">Prediction combines field telemetry in this prototype. A trained model can consume historical sensor/weather data.</p></div>
+            <div class="card gate-card"><h3>Automated Canal Gate</h3><div class="gate-illustration"><div class="water"></div><div class="gate" id="gateVisual"></div></div><div class="gate-state"><span>Status</span><strong id="gateStateText">CLOSED</strong></div><div class="gate-buttons"><button class="soft-btn" data-gate="OPEN">Open Gate</button><button class="soft-btn" data-gate="CLOSED">Close Gate</button><button class="primary-btn" data-gate="AUTO">AI Auto</button></div><p id="gateMessage" class="muted">Use AI Auto to demonstrate prediction-driven irrigation.</p></div>
+          </div>
+        </div>
+
+        <div class="page hidden" id="history"><div class="section-intro"><div><span class="pill">AUDIT TRAIL</span><h2>Analysis History</h2><p>Recent prototype scans and system actions.</p></div></div><div class="card"><div class="history-table" id="historyTable"><div class="history-head"><span>Time</span><span>Module</span><span>Result</span><span>Status</span></div></div></div></div>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
